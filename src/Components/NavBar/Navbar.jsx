@@ -20,7 +20,7 @@ const Navbar = () => {
             <div className='flex items-center'>
               <img
                 className='w-[25%] h-12'
-                src='./favicon.png'
+                src='../favicon.png'
                 alt=''
               />
               <h2 className='text-3xl font-bold'>
