@@ -6,6 +6,20 @@ const AddCategoryPage = () => {
     const form = e.target;
     const name = form.name.value;
     const description = form.description.value;
+    const newCategory = {
+      name: name,
+      description: description,
+    };
+    fetch("http://localhost:5000/addcategory", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCategory),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    form.reset();
     toast.success("Category Created Successfully");
   };
 

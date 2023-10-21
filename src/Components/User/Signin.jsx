@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Firebase/AuthProvider";
+import { toast } from "react-toastify";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -10,21 +11,23 @@ const Signin = () => {
     const pass = e.target.pass.value;
     const email = e.target.email.value;
     signIn(email, pass)
-      .then((result) => {
+      .then(() => {
         navigate(location?.state ? location.state : "/");
+        toast.success("Logged in Succesfully");
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error.code.slice(5, error.code.length));
       });
   };
 
   const googleSignin = () => {
     loginGoogle()
-      .then((result) => {
+      .then(() => {
         navigate(location?.state ? location.state : "/");
+        toast.success("Logged in Succesfully");
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(error.code.slice(5, error.code.length));
       });
   };
 

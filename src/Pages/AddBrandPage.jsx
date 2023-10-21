@@ -4,12 +4,23 @@ const AddBrandPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    const name = form.name.value.toLowerCase();
     const image = form.image.value;
     const advertisement_1 = form.advertisement_1.value;
     const advertisement_2 = form.advertisement_2.value;
     const advertisement_3 = form.advertisement_3.value;
+    const newBrand = { name, image, advertisement_1, advertisement_2, advertisement_3 };
 
+    fetch("http://localhost:5000/addbrand", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBrand),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    form.reset();
     toast.success("Brand Created Successfully");
   };
 

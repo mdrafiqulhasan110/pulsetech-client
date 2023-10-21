@@ -7,6 +7,7 @@ import AddBrandPage from "../Pages/AddBrandPage";
 import AddCategoryPage from "../Pages/AddCategoryPage";
 import SignInPage from "../Pages/SignInPage";
 import SignUpPage from "../Pages/SignUpPage";
+import BrandPage from "../Pages/BrandPage";
 
 const Router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const Router = createBrowserRouter([
       {
         path: "/add_brands",
         element: <AddBrandPage />,
+      },
+      {
+        path: "/brands/:brand",
+        element: <BrandPage></BrandPage>,
+        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`),
       },
       {
         path: "/add_category",

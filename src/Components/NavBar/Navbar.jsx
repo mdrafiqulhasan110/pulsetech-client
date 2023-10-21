@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineBars, AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import MenuItems from "./MenuItems";
+import { AuthContext } from "../../Firebase/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [view, setView] = useState(false);
 
   const handelSearchBar = () => {
@@ -17,16 +20,18 @@ const Navbar = () => {
       <div className='hidden lg:block shadow-md border-b'>
         <div className='navbar my-2 w-[85%] m-auto grid grid-cols-12 gap-2'>
           <div className='col-span-4'>
-            <div className='flex items-center'>
-              <img
-                className='w-[25%] h-12'
-                src='../favicon.png'
-                alt=''
-              />
-              <h2 className='text-3xl font-bold'>
-                <span className='text-[#3498db]  '>Pulse</span>Tech
-              </h2>
-            </div>
+            <Link to={`/`}>
+              <div className='flex items-center'>
+                <img
+                  className='w-[25%] h-12'
+                  src='../favicon.png'
+                  alt=''
+                />
+                <h2 className='text-3xl font-bold'>
+                  <span className='text-[#3498db]  '>Pulse</span>Tech
+                </h2>
+              </div>
+            </Link>
           </div>
           <div className='col-span-4'>
             <div className='form-control w-full'>
@@ -79,26 +84,39 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
+
             <div className='dropdown dropdown-end'>
               <label
                 tabIndex={0}
-                className='btn btn-ghost btn-square border-black'
+                className='btn btn-ghost btn-circle'
               >
-                <AiOutlineUser className='text-xl ' />
+                <img
+                  className='btn btn-ghost btn-circle border-[3497DA] p-.5'
+                  src={user?.photoURL ? user.photoURL : "https://static-00.iconduck.com/assets.00/user-avatar-icon-512x512-vufpcmdn.png"}
+                />
               </label>
               <ul
                 tabIndex={0}
                 className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
               >
-                <li>
-                  <a className='justify-between'>Profile</a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
+                {user ? (
+                  <>
+                    <li>
+                      <p>
+                        Hello, <span className='underline text-blue-500'>{user.displayName}</span>
+                      </p>
+                    </li>
+                    <li>
+                      <p onClick={() => logOut()}>Logout</p>
+                    </li>
+                  </>
+                ) : (
+                  <Link to={"/signin"}>
+                    <li>
+                      <p>LogIn</p>
+                    </li>
+                  </Link>
+                )}
               </ul>
             </div>
           </div>

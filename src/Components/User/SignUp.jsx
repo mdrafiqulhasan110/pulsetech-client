@@ -1,12 +1,13 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../Firebase/AuthProvider";
 
 const Signup = () => {
-  const { createUser, loginGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { createUser, loginGoogle, logOut } = useContext(AuthContext);
   const [strength, setstrength] = useState(false);
   const [length, setlength] = useState(false);
   const [character, setcharacter] = useState(false);
@@ -28,7 +29,9 @@ const Signup = () => {
             displayName: name,
             photoURL: image,
           });
-          toast.success("User Registration Succesfull");
+          toast.success("User Registration Successful");
+          logOut();
+          navigate("/signin");
         })
         .catch((error) => {
           toast.error(error.code.slice(5, error.code.length));

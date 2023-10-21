@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const AddProductPage = () => {
+const UpdateProduct = () => {
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -189,4 +189,4 @@ const AddProductPage = () => {
   );
 };
 
-export default AddProductPage;
+export default UpdateProduct;
