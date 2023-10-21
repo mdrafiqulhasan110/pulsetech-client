@@ -29,6 +29,7 @@ const AddProductPage = () => {
             Name
           </label>
           <input
+            required
             type='text'
             id='name'
             name='name'
@@ -43,6 +44,7 @@ const AddProductPage = () => {
             Image URL
           </label>
           <input
+            required
             type='text'
             id='image'
             name='image'
@@ -58,6 +60,7 @@ const AddProductPage = () => {
             Brand Name
           </label>
           <input
+            required
             type='text'
             id='brand'
             name='brand'
@@ -72,6 +75,7 @@ const AddProductPage = () => {
             Category
           </label>
           <input
+            required
             type='text'
             id='category'
             name='category'
@@ -87,6 +91,7 @@ const AddProductPage = () => {
             Price
           </label>
           <input
+            required
             type='number'
             id='price'
             name='price'
@@ -102,6 +107,7 @@ const AddProductPage = () => {
             Rating
           </label>
           <input
+            required
             type='number'
             id='rating'
             name='rating'
@@ -116,6 +122,7 @@ const AddProductPage = () => {
             Short description
           </label>
           <textarea
+            required
             id='description'
             name='description'
             className='w-full mt-1 py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200'

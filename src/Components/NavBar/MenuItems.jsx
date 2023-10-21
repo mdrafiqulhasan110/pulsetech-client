@@ -15,7 +15,7 @@ const MenuItems = (
       <NavLink to={"/add_category"}>Add Category</NavLink>
     </li>
     <li>
-      <NavLink to={"/login"}>Login</NavLink>
+      <NavLink to={"signin"}>Login</NavLink>
     </li>
   </>
 );

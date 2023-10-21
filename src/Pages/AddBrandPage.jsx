@@ -28,6 +28,7 @@ const AddBrandPage = () => {
             Brand Name
           </label>
           <input
+            required
             type='text'
             id='name'
             name='name'
@@ -42,6 +43,7 @@ const AddBrandPage = () => {
             Image URL
           </label>
           <input
+            required
             type='text'
             id='image'
             name='image'
@@ -59,6 +61,7 @@ const AddBrandPage = () => {
               Advertisement 1
             </label>
             <input
+              required
               type='text'
               id='advertisement_1'
               name='advertisement_1'
@@ -73,6 +76,7 @@ const AddBrandPage = () => {
               Advertisement 2
             </label>
             <input
+              required
               type='text'
               id='advertisement_2'
               name='advertisement_2'
@@ -87,6 +91,7 @@ const AddBrandPage = () => {
               Advertisement 3
             </label>
             <input
+              required
               type='text'
               id='advertisement_3'
               name='advertisement_3'
