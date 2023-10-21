@@ -9,7 +9,6 @@ const Navbar = () => {
   const handelSearchBar = () => {
     setView(!view);
   };
-  console.log(view);
 
   return (
     <div>
