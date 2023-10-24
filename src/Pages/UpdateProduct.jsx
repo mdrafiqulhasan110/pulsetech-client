@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UpdateProduct = () => {
+  const product = useLoaderData();
+  console.log(product);
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -9,13 +12,11 @@ const UpdateProduct = () => {
     fetch("http://localhost:5000/brands")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setBrands(data);
       });
     fetch("http://localhost:5000/categories")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCategories(data);
       });
   }, []);
@@ -32,8 +33,8 @@ const UpdateProduct = () => {
     const description = form.description.value;
     const newProduct = { name, image, brand, category, price, rating, description };
 
-    fetch("http://localhost:5000/addproduct", {
-      method: "POST",
+    fetch(`http://localhost:5000/product/${product._id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -43,11 +44,12 @@ const UpdateProduct = () => {
       .then((data) => console.log(data));
     form.reset();
     toast.success("Product Created Successfully");
+    window.location.reload();
   };
 
   return (
     <div>
-      <h1 className='mt-10  text-center text-3xl uppercase font-medium bg-gray-400 p-2 rounded-t-md'>Add Products Here</h1>
+      <h1 className='mt-10  text-center text-3xl uppercase font-medium bg-gray-400 p-2 rounded-t-md'>Update Products</h1>
       <form
         onSubmit={handleSubmit}
         className='border rounded-b-md mx-auto p-4 grid grid-cols-1 lg:grid-cols-2 gap-x-4 '
@@ -64,6 +66,7 @@ const UpdateProduct = () => {
             type='text'
             id='name'
             name='name'
+            defaultValue={product.name}
             className='w-full mt-1 py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200'
           />
         </div>
@@ -75,6 +78,7 @@ const UpdateProduct = () => {
             Image URL
           </label>
           <input
+            defaultValue={product.image}
             required
             type='text'
             id='image'
@@ -100,8 +104,9 @@ const UpdateProduct = () => {
               <option
                 value={name}
                 key={_id}
+                selected={name === product.brand ? "selected" : ""}
               >
-                {name}
+                {name.toUpperCase()}
               </option>
             ))}
           </select>
@@ -123,6 +128,7 @@ const UpdateProduct = () => {
               <option
                 value={name}
                 key={_id}
+                selected={name === product.category ? "selected" : ""}
               >
                 {name}
               </option>
@@ -138,6 +144,7 @@ const UpdateProduct = () => {
             Price
           </label>
           <input
+            defaultValue={product.price}
             required
             type='number'
             id='price'
@@ -151,16 +158,47 @@ const UpdateProduct = () => {
             htmlFor='rating'
             className='block text-sm font-medium text-gray-700'
           >
-            Rating
+            Rating (Out of 5)
           </label>
-          <input
+          <select
             required
-            type='number'
             id='rating'
             name='rating'
             className='w-full mt-1 py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200'
-          />
+          >
+            <option
+              value='1'
+              selected={1 == product.rating ? "selected" : ""}
+            >
+              1
+            </option>
+            <option
+              value='2'
+              selected={2 == product.rating ? "selected" : ""}
+            >
+              2
+            </option>
+            <option
+              value='3'
+              selected={3 == product.rating ? "selected" : ""}
+            >
+              3
+            </option>
+            <option
+              value='4'
+              selected={4 == product.rating ? "selected" : ""}
+            >
+              4
+            </option>
+            <option
+              value='5'
+              selected={5 == product.rating ? "selected" : ""}
+            >
+              5
+            </option>
+          </select>
         </div>
+
         <div className='mb-4 col-span-1 lg:col-span-2'>
           <label
             htmlFor='description'
@@ -169,6 +207,7 @@ const UpdateProduct = () => {
             Short description
           </label>
           <textarea
+            defaultValue={product.description}
             required
             id='description'
             name='description'
@@ -181,7 +220,7 @@ const UpdateProduct = () => {
             type='submit'
             className='w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300'
           >
-            Add Product
+            Update Product
           </button>
         </div>
       </form>

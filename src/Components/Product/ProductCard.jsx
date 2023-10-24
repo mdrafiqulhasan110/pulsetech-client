@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ProductCard = ({ product }) => {
   return (
     <div className='bg-white shadow-md rounded-lg text-center p-4 space-y-3'>
@@ -24,7 +26,9 @@ const ProductCard = ({ product }) => {
 
       <div className='mt-4 grid grid-cols-3 text-center w-full'>
         <div className=' bg-blue-500 text-white px-4 py-2 rounded-l-md'>Details</div>
-        <div className=' bg-yellow-500 text-white px-4 py-2 '>Update</div>
+        <Link to={`/update_products/${product._id}`}>
+          <div className=' bg-yellow-500 text-white px-4 py-2 '>Update</div>
+        </Link>
         <div className=' bg-red-500 text-white px-4 py-2 rounded-r-md'>Delete</div>
       </div>
     </div>

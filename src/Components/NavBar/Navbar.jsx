@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { AiOutlineBars, AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineBars, AiOutlineShoppingCart } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import MenuItems from "./MenuItems";
 import { AuthContext } from "../../Firebase/AuthProvider";
@@ -122,7 +122,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className=' bg-[#3498db] flex justify-center border-t-4 border-gray'>
-          <ul className='w-[85%] font-semibold [&_li>*]:rounded-md  menu menu-horizontal gap-2  '>{MenuItems}</ul>
+          <ul className='w-[85%] font-semibold [&_li>*]:rounded-md  menu menu-horizontal gap-2  '>
+            <MenuItems></MenuItems>
+          </ul>
         </div>
       </div>
 
@@ -152,7 +154,7 @@ const Navbar = () => {
                 ></label>
                 <ul className='menu  p-4 w-80 min-h-full bg-white  max-w-[60vw]'>
                   {/* Sidebar content here */}
-                  {MenuItems}
+                  <MenuItems></MenuItems>
                 </ul>
                 <div className='flex justify-end w-full  px-6 pt-6 pointer-events-none	'>
                   <RxCross2 className='bg-white text-red-500'></RxCross2>

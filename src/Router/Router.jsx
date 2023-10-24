@@ -8,6 +8,7 @@ import AddCategoryPage from "../Pages/AddCategoryPage";
 import SignInPage from "../Pages/SignInPage";
 import SignUpPage from "../Pages/SignUpPage";
 import BrandPage from "../Pages/BrandPage";
+import UpdateProduct from "../Pages/UpdateProduct";
 
 const Router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const Router = createBrowserRouter([
       {
         path: "/add_products",
         element: <AddProductPage />,
+      },
+      {
+        path: "/update_products/:id",
+        element: <UpdateProduct></UpdateProduct>,
+        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
         path: "/add_brands",

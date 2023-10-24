@@ -19,13 +19,12 @@ const AllBrands = ({ brands }) => {
               <div className='card card-compact p-2  border border-opacity-60 border-[#3497DA] bg-base-100 shadow-xl'>
                 <figure>
                   <img
-                    className='w-cover'
                     src={item.image}
-                    alt='Shoes'
+                    alt={item.name}
                   />
                 </figure>
                 <div className='card-body'>
-                  <h2 className='text-center font-medium'>{item.name}</h2>
+                  <h2 className='text-center font-medium'>{item.name.toUpperCase()}</h2>
                 </div>
               </div>
             </Link>

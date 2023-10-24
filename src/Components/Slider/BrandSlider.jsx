@@ -16,7 +16,7 @@ const BrandSlider = ({ brand }) => {
   }, []);
   return (
     <div>
-      <div className='col-span-1 lg:col-span-2 aspect-[2/1]'>
+      <div className='col-span-1 lg:col-span-2 aspect-[2/1] shadow-xl'>
         <Carousel className='rounded-none'>
           <img
             className='aspect-[2/1]'
