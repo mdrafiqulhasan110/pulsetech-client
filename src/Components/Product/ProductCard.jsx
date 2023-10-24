@@ -25,7 +25,10 @@ const ProductCard = ({ product }) => {
       <p className='text-green-600 text-lg font-semibold mt-2'>${product.price}</p>
 
       <div className='mt-4 grid grid-cols-3 text-center w-full'>
-        <div className=' bg-blue-500 text-white px-4 py-2 rounded-l-md'>Details</div>
+        <Link to={`/products/${product._id}`}>
+          <div className=' bg-blue-500 text-white px-4 py-2 rounded-l-md'>Details</div>{" "}
+        </Link>
+
         <Link to={`/update_products/${product._id}`}>
           <div className=' bg-yellow-500 text-white px-4 py-2 '>Update</div>
         </Link>

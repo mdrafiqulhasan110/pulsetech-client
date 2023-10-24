@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 const UpdateProduct = () => {
   const product = useLoaderData();
-  console.log(product);
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
 
