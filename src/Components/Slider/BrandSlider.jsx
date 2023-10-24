@@ -13,7 +13,7 @@ const BrandSlider = ({ brand }) => {
         setBrandName(data[0]);
         console.log(data);
       });
-  }, []);
+  }, [name]);
   return (
     <div>
       <div className='col-span-1 lg:col-span-2 aspect-[2/1] shadow-xl'>
