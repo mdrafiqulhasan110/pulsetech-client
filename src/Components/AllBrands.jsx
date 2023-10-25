@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const AllBrands = ({ brands }) => {
-  console.log(brands);
   return (
     <div>
       <h1 className='border-b-2 border-[#3497DA] mb-6'>

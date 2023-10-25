@@ -6,7 +6,7 @@ import { AuthContext } from "../../Firebase/AuthProvider";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, cart } = useContext(AuthContext);
   const [view, setView] = useState(false);
 
   const handelSearchBar = () => {
@@ -68,7 +68,7 @@ const Navbar = () => {
               >
                 <div className='indicator'>
                   <AiOutlineShoppingCart className='text-2xl' />
-                  <span className='badge badge-xs indicator-item text-[#3498db]'>8</span>
+                  <span className='badge badge-xs indicator-item text-[#3498db]'>{cart.length}</span>
                 </div>
               </label>
               <div
@@ -76,10 +76,12 @@ const Navbar = () => {
                 className='mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow'
               >
                 <div className='card-body'>
-                  <span className='font-bold text-lg'>8 Items</span>
-                  <span className='text-info'>Subtotal: $999</span>
+                  <p className='font-bold text-lg'>{cart.length} Items</p>
+
                   <div className='card-actions'>
-                    <button className='btn btn-primary btn-block'>View cart</button>
+                    <Link to={"./cart"}>
+                      <button className='btn btn-primary btn-block'>View cart</button>
+                    </Link>
                   </div>
                 </div>
               </div>

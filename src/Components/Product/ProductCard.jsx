@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
       <img
         src={product.image}
         alt={product.name}
-        className='w-full object-cover object-center'
+        className='object-contain aspect-[2/2]'
       />
       <div className='grid grid-cols-2'>
         <p className='text-gray-600 capitalize'>Brand: {product.brand}</p>

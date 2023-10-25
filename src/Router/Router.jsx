@@ -10,12 +10,13 @@ import SignUpPage from "../Pages/SignUpPage";
 import BrandPage from "../Pages/BrandPage";
 import UpdateProduct from "../Pages/UpdateProduct";
 import ProductDetailsPage from "../Pages/ProductDetailsPage";
+import CartPage from "../Pages/CartPage";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <Error></Error>,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -27,12 +28,12 @@ const Router = createBrowserRouter([
       },
       {
         path: "/update_products/:id",
-        element: <UpdateProduct></UpdateProduct>,
+        element: <UpdateProduct />,
         loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
         path: "/products/:id",
-        element: <ProductDetailsPage></ProductDetailsPage>,
+        element: <ProductDetailsPage />,
         loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
@@ -41,12 +42,12 @@ const Router = createBrowserRouter([
       },
       {
         path: "/brands/:brand",
-        element: <BrandPage></BrandPage>,
+        element: <BrandPage />,
         loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`),
       },
       {
         path: "/add_category",
-        element: <AddCategoryPage></AddCategoryPage>,
+        element: <AddCategoryPage />,
       },
       {
         path: "/signin",
@@ -58,7 +59,8 @@ const Router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Home></Home>,
+        element: <CartPage />,
+        loader: () => fetch("http://localhost:5000/cart/"),
       },
     ],
   },

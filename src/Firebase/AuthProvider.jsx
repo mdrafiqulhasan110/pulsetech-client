@@ -9,6 +9,7 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
@@ -23,6 +24,18 @@ const AuthProvider = ({ children }) => {
 
   const loginGoogle = () => signInWithPopup(auth, provider);
 
+  const updateCart = (user) => {
+    fetch("http://localhost:5000/cart")
+      .then((res) => res.json())
+      .then((data) => {
+        let userCart = [];
+        if (user) {
+          userCart = data.filter((cart) => cart.email === user.email);
+        }
+        setCart(userCart);
+      });
+  };
+
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -31,6 +44,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      updateCart(currentUser);
       setLoading(false);
     });
     return () => {
@@ -45,6 +59,8 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     loginGoogle,
+    cart,
+    updateCart,
   };
 
   return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
