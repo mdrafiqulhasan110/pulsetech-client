@@ -6,7 +6,7 @@ const BrandSlider = ({ brand }) => {
   const [brandName, setBrandName] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/brands/${name}`)
+    fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/brands/${name}`)
       .then((res) => res.json())
       .then((data) => {
         setBrandName(data[0]);

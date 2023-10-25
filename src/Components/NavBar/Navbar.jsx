@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
-import { AiOutlineBars, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineBars, AiOutlineShoppingCart, AiOutlineShop, AiOutlineHome } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
+import { BsFillSunFill, BsFillMoonStarsFill } from "react-icons/bs";
 import MenuItems from "./MenuItems";
 import { AuthContext } from "../../Firebase/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ setTheme, theme }) => {
   const { user, logOut, cart } = useContext(AuthContext);
   const [view, setView] = useState(false);
 
@@ -18,7 +19,7 @@ const Navbar = () => {
       {/* Navbar for PC */}
 
       <div className='hidden lg:block shadow-md border-b'>
-        <div className='navbar my-2 w-[85%] m-auto grid grid-cols-12 gap-2'>
+        <div className='navbar my-2 w-[85%] m-auto grid grid-cols-12 gap-2 dark:text-white'>
           <div className='col-span-4'>
             <Link to={`/`}>
               <div className='flex items-center'>
@@ -61,10 +62,17 @@ const Navbar = () => {
             </div>
           </div>
           <div className='gap-4 col-span-4 flex justify-end'>
+            <button
+              onClick={() => setTheme(!theme)}
+              className='btn btn-ghost btn-square border-black dark:border-white'
+            >
+              {theme ? <BsFillSunFill /> : <BsFillMoonStarsFill />}
+            </button>
+
             <div className='dropdown dropdown-end'>
               <label
                 tabIndex={0}
-                className='btn btn-ghost btn-square border-black'
+                className='btn btn-ghost btn-square border-black dark:border-white'
               >
                 <div className='indicator'>
                   <AiOutlineShoppingCart className='text-2xl' />
@@ -87,10 +95,10 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className='dropdown dropdown-end'>
+            <div className='dropdown dropdown-end '>
               <label
                 tabIndex={0}
-                className='btn btn-ghost btn-circle'
+                className='btn btn-ghost btn-circle dark:border-white'
               >
                 <img
                   className='btn btn-ghost btn-circle border-[3497DA] p-.5'
@@ -99,12 +107,12 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
+                className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100  dark:bg-[#111827] rounded-box w-52'
               >
                 {user ? (
                   <>
                     <li>
-                      <p>
+                      <p className='hover:text-white'>
                         Hello, <span className='underline text-blue-500'>{user.displayName}</span>
                       </p>
                     </li>
@@ -157,6 +165,9 @@ const Navbar = () => {
                 <ul className='menu  p-4 w-80 min-h-full bg-white  max-w-[60vw]'>
                   {/* Sidebar content here */}
                   <MenuItems></MenuItems>
+                  <li>
+                    <p onClick={() => setTheme(!theme)}>{theme ? "Change to DarkMode" : "Change to LightMode"}</p>
+                  </li>
                 </ul>
                 <div className='flex justify-end w-full  px-6 pt-6 pointer-events-none	'>
                   <RxCross2 className='bg-white text-red-500'></RxCross2>
@@ -209,6 +220,22 @@ const Navbar = () => {
 
             <button className='btn join-item'>Search</button>
           </div>
+        </div>
+        <div className='btm-nav z-50'>
+          <NavLink to={"/products"}>
+            <AiOutlineShop className='text-2xl' />
+            <span className='btm-nav-label'>Shop</span>
+          </NavLink>
+
+          <NavLink to={"/"}>
+            <AiOutlineHome className='text-2xl' />
+            <span className='btm-nav-label'>Home</span>
+          </NavLink>
+
+          <NavLink to={"/cart"}>
+            <AiOutlineShoppingCart className='text-2xl' />
+            <span className='btm-nav-label'>Cart</span>
+          </NavLink>
         </div>
       </div>
     </div>

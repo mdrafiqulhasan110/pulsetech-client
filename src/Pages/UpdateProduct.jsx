@@ -8,12 +8,12 @@ const UpdateProduct = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/brands")
+    fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/brands")
       .then((res) => res.json())
       .then((data) => {
         setBrands(data);
       });
-    fetch("http://localhost:5000/categories")
+    fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/categories")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
@@ -32,7 +32,7 @@ const UpdateProduct = () => {
     const description = form.description.value;
     const newProduct = { name, image, brand, category, price, rating, description };
 
-    fetch(`http://localhost:5000/product/${product._id}`, {
+    fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/product/${product._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

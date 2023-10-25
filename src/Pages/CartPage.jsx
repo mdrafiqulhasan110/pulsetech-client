@@ -20,7 +20,7 @@ const CartPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/cart/${id}`, { method: "DELETE" })
+        fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/cart/${id}`, { method: "DELETE" })
           .then((res) => res.json())
           .then(() => {
             updateCart(user);
@@ -31,7 +31,7 @@ const CartPage = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

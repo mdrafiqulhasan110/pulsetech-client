@@ -10,7 +10,7 @@ const Home = () => {
   const loadedProducts = useLoaderData();
 
   useEffect(() => {
-    fetch("http://localhost:5000/brands")
+    fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/brands")
       .then((res) => res.json())
       .then((data) => {
         setBrands(data);

@@ -11,7 +11,7 @@ const AddBrandPage = () => {
     const advertisement_3 = form.advertisement_3.value;
     const newBrand = { name, image, advertisement_1, advertisement_2, advertisement_3 };
 
-    fetch("http://localhost:5000/addbrand", {
+    fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/addbrand", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

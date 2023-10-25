@@ -5,14 +5,14 @@ import { AuthContext } from "../Firebase/AuthProvider";
 
 const ProductDetailsPage = () => {
   const product = useLoaderData();
-  const { user, updateCart, setLoading } = useContext(AuthContext);
+  const { user, updateCart } = useContext(AuthContext);
   const { _id, name, image, brand, category, price, rating, description } = product;
 
   const handleSubmit = () => {
     const email = user.email;
     const newCart = { email, item: _id };
 
-    fetch("http://localhost:5000/addcart", {
+    fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/addcart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +21,6 @@ const ProductDetailsPage = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
-    setLoading(true);
     updateCart(user);
     toast.success("Product Added to Cart");
   };

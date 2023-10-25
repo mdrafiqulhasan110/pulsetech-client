@@ -18,7 +18,7 @@ const ProductCard = ({ product, products, setProducts }) => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/product/${id}`, { method: "DELETE" })
+          fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/product/${id}`, { method: "DELETE" })
             .then((res) => res.json())
             .then(() => {
               const remaining = products.filter((prod) => prod._id !== id);
@@ -33,7 +33,7 @@ const ProductCard = ({ product, products, setProducts }) => {
     }
   };
   return (
-    <div className='bg-white shadow-md rounded-lg text-center p-4 space-y-3'>
+    <div className='card bg-white shadow-xl rounded-lg text-center p-4 space-y-3 border'>
       <img
         src={product.image}
         alt={product.name}
@@ -73,7 +73,7 @@ const ProductCard = ({ product, products, setProducts }) => {
         </div>
       ) : (
         <Link to={`/products/${product._id}`}>
-          <div className=' bg-blue-500 text-white px-4 py-2 rounded-md'>Details</div>{" "}
+          <div className=' bg-blue-500 text-white px-4 py-2 rounded-l-md'>Details</div>{" "}
         </Link>
       )}
     </div>

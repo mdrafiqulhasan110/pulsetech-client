@@ -10,7 +10,7 @@ const AddCategoryPage = () => {
       name: name,
       description: description,
     };
-    fetch("http://localhost:5000/addcategory", {
+    fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/addcategory", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

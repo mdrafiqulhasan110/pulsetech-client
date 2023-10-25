@@ -23,7 +23,7 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch(`http://localhost:5000/products`),
+        loader: () => fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/products`),
       },
       {
         path: "/add_products",
@@ -40,12 +40,12 @@ const Router = createBrowserRouter([
             <UpdateProduct />
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+        loader: ({ params }) => fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/product/${params.id}`),
       },
       {
         path: "/products",
         element: <AllProducts />,
-        loader: () => fetch(`http://localhost:5000/products`),
+        loader: () => fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/products`),
       },
       {
         path: "/products/:id",
@@ -54,7 +54,7 @@ const Router = createBrowserRouter([
             <ProductDetailsPage />
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+        loader: ({ params }) => fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/product/${params.id}`),
       },
       {
         path: "/add_brands",
@@ -68,7 +68,7 @@ const Router = createBrowserRouter([
       {
         path: "/brands/:brand",
         element: <BrandPage />,
-        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.brand}`),
+        loader: ({ params }) => fetch(`https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/products/${params.brand}`),
       },
       {
         path: "/add_category",
@@ -93,7 +93,7 @@ const Router = createBrowserRouter([
             <CartPage />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/cart/"),
+        loader: () => fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/cart/"),
       },
     ],
   },

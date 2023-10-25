@@ -25,14 +25,14 @@ const AuthProvider = ({ children }) => {
   const loginGoogle = () => signInWithPopup(auth, provider);
 
   const updateCart = (user) => {
-    fetch("http://localhost:5000/cart")
+    fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/cart")
       .then((res) => res.json())
       .then((cartData) => {
         let userCart = [];
         if (user) {
           const fullCart = cartData.filter((cart) => cart.email === user.email);
 
-          fetch("http://localhost:5000/products")
+          fetch("https://brand-shop-server-gxa58mniy-mdrafiqulhasan110s-projects.vercel.app/products")
             .then((res) => res.json())
             .then((productData) => {
               const productIds = productData.map((product) => product._id);
