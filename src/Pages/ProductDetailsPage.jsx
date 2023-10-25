@@ -5,7 +5,7 @@ import { AuthContext } from "../Firebase/AuthProvider";
 
 const ProductDetailsPage = () => {
   const product = useLoaderData();
-  const { user, updateCart } = useContext(AuthContext);
+  const { user, updateCart, setLoading } = useContext(AuthContext);
   const { _id, name, image, brand, category, price, rating, description } = product;
 
   const handleSubmit = () => {
@@ -21,6 +21,7 @@ const ProductDetailsPage = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
+    setLoading(true);
     updateCart(user);
     toast.success("Product Added to Cart");
   };

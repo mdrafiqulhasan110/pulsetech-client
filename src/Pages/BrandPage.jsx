@@ -4,11 +4,14 @@ import Products from "../Components/Product/Products";
 
 const BrandPage = () => {
   const brand = useParams();
-  const products = useLoaderData();
+  const loadedProducts = useLoaderData();
   return (
     <div className='space-y-10'>
       <BrandSlider brand={brand}></BrandSlider>
-      <Products products={products}></Products>
+      <Products
+        loadedProducts={loadedProducts.slice(0, 4)}
+        title={"All Products"}
+      ></Products>
     </div>
   );
 };

@@ -9,13 +9,11 @@ const AddProductPage = () => {
     fetch("http://localhost:5000/brands")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setBrands(data);
       });
     fetch("http://localhost:5000/categories")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCategories(data);
       });
   }, []);

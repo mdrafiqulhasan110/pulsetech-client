@@ -4,14 +4,12 @@ import { useEffect, useState } from "react";
 const BrandSlider = ({ brand }) => {
   const name = brand.brand;
   const [brandName, setBrandName] = useState([]);
-  console.log(name);
 
   useEffect(() => {
     fetch(`http://localhost:5000/brands/${name}`)
       .then((res) => res.json())
       .then((data) => {
         setBrandName(data[0]);
-        console.log(data);
       });
   }, [name]);
   return (

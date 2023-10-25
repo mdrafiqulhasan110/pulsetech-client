@@ -27,12 +27,24 @@ const AuthProvider = ({ children }) => {
   const updateCart = (user) => {
     fetch("http://localhost:5000/cart")
       .then((res) => res.json())
-      .then((data) => {
+      .then((cartData) => {
         let userCart = [];
         if (user) {
-          userCart = data.filter((cart) => cart.email === user.email);
+          const fullCart = cartData.filter((cart) => cart.email === user.email);
+
+          fetch("http://localhost:5000/products")
+            .then((res) => res.json())
+            .then((productData) => {
+              const productIds = productData.map((product) => product._id);
+
+              fullCart.forEach((cartItem) => {
+                if (productIds.includes(cartItem.item)) {
+                  userCart.push(cartItem);
+                }
+              });
+              setCart(userCart);
+            });
         }
-        setCart(userCart);
       });
   };
 
@@ -55,6 +67,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    setLoading,
     createUser,
     signIn,
     logOut,

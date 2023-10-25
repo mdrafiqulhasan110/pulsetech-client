@@ -11,6 +11,8 @@ import BrandPage from "../Pages/BrandPage";
 import UpdateProduct from "../Pages/UpdateProduct";
 import ProductDetailsPage from "../Pages/ProductDetailsPage";
 import CartPage from "../Pages/CartPage";
+import PrivateRoute from "./PrivateRoute";
+import AllProducts from "../Pages/AllProducts";
 
 const Router = createBrowserRouter([
   {
@@ -21,25 +23,48 @@ const Router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: () => fetch(`http://localhost:5000/products`),
       },
       {
         path: "/add_products",
-        element: <AddProductPage />,
+        element: (
+          <PrivateRoute>
+            <AddProductPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update_products/:id",
-        element: <UpdateProduct />,
+        element: (
+          <PrivateRoute>
+            <UpdateProduct />
+          </PrivateRoute>
+        ),
         loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
+        path: "/products",
+        element: <AllProducts />,
+        loader: () => fetch(`http://localhost:5000/products`),
+      },
+      {
         path: "/products/:id",
-        element: <ProductDetailsPage />,
+        element: (
+          <PrivateRoute>
+            <ProductDetailsPage />
+          </PrivateRoute>
+        ),
         loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
         path: "/add_brands",
-        element: <AddBrandPage />,
+        element: (
+          <PrivateRoute>
+            <AddBrandPage />
+          </PrivateRoute>
+        ),
       },
+
       {
         path: "/brands/:brand",
         element: <BrandPage />,
@@ -47,7 +72,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "/add_category",
-        element: <AddCategoryPage />,
+        element: (
+          <PrivateRoute>
+            <AddCategoryPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signin",
@@ -59,7 +88,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <CartPage />,
+        element: (
+          <PrivateRoute>
+            <CartPage />
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/cart/"),
       },
     ],

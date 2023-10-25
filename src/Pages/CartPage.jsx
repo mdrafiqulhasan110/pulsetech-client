@@ -22,7 +22,7 @@ const CartPage = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/cart/${id}`, { method: "DELETE" })
           .then((res) => res.json())
-          .then((data) => {
+          .then(() => {
             updateCart(user);
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           });
